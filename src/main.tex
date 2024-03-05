@@ -1,0 +1,105 @@
+%! Author = e4
+%! Date = 3/3/24
+
+% Preamble
+\documentclass{article}
+
+% Packages
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{times} % This package sets Times New Roman as the default text font
+\usepackage{helvet} % This package is for Helvetica, a sans-serif font
+\usepackage{courier} % This package is for Courier, a monospaced font
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+
+\renewcommand{\familydefault}{\sfdefault} % Set the default font to sans-serif (Helvetica)
+
+\title{\fontsize{16pt}{19pt}\selectfont\textbf{Forensic Report on Network Intrusion}}
+\author{\fontsize{12pt}{14pt}\selectfont [Your Name] \\ Bank of Hong Kong}
+\date{\fontsize{12pt}{14pt}\selectfont [Date of the Report]}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% Listings package configuration
+\lstset{
+    language=Python, % Setting the language
+    basicstyle=\ttfamily\small, % Code font style
+    keywordstyle=\color{blue}, % Keyword style
+    stringstyle=\color{red}, % String literal style
+    commentstyle=\color{green}, % Comment style
+    morecomment=[l][\color{magenta}]{\#}, % Specifying comment style
+    frame=single, % Adding a frame around the code
+    backgroundcolor=\color{gray!10}, % Background color for the code block
+    showspaces=false, % Show spaces adding particular underscores
+    showstringspaces=false, % Underline spaces within strings only
+    showtabs=false, % Show tabs within strings adding particular underscores
+    tabsize=2, % Sets default tabsize to 2 spaces
+    captionpos=b, % Sets the caption-position to bottom
+    breaklines=true, % Sets automatic line breaking
+    breakatwhitespace=false, % Sets if automatic breaks should only happen at whitespace
+}
+
+% Document
+\begin{document}
+
+    \maketitle
+
+    \section*{\fontsize{14pt}{17pt}\selectfont Overview / Case Summary}
+    On the 29th of October 2022, at approximately 3:00 p.m.,
+    the Intrusion Detection System (IDS) of the Bank of Hong Kong flagged abnormal network activities aimed at the Bank's web server.
+    This prompted an immediate and thorough examination,
+    leading to the suspicion of a deliberate cyber-attack.
+    As the appointed network security engineer, my task was to investigate these anomalies,
+    analyze network traffic, and manage the incident response.
+
+    \section*{\fontsize{14pt}{17pt}\selectfont Objective/Tools Used/Evidence Map \& Table}
+    The primary objective of this forensic investigation is to analyze the pcap file to identify suspicious activities
+    and reconstruct the events that occurred during the attack.
+    Tools used for this analysis include Wireshark for packet inspection,
+    Nmap for network scanning, and various cryptographic tools for evidence validation.
+    The Evidence Map & Table, provided as an appendix, organizes the evidence collected during the investigation.
+
+    \section*{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}
+    \subsection*{Hosts List}
+    The analysis of the pcap file revealed several hosts with a substantial amount of network traffic,
+    constituting more than 1\% of the captured packets.
+    The details of these hosts, including IP and MAC addresses, are tabulated in Appendix A.
+
+    \subsection*{Victim Information}
+    The victim of the attack was identified as the Bank's web server.
+    Detailed information regarding the server's IP address, MAC address, and other relevant details are included in Appendix B.
+
+    \subsection*{Attacker Information}
+    Through careful inspection of the network traffic, the attacker's identity was deduced.
+    The corresponding IP and MAC addresses, as well as the techniques used in the intrusion, are documented in Appendix C.
+
+    \subsection*{Description of Attacks}
+    The attack methodologies observed from the packet captures indicated a structured and multi-phased approach,
+    including reconnaissance, exploitation, and data exfiltration attempts.
+    Specific attack vectors and their signatures are outlined in Appendix D.
+
+
+    \section*{\fontsize{14pt}{17pt}\selectfont Investigative Reconstruction}
+    Upon scrutinizing the sequence of network events, a timeline of the attack was reconstructed,
+    revealing the methods and progression of the malicious activities.
+    This reconstruction is crucial for understanding the attack's impact and for developing future mitigation strategies.
+
+    \section*{\fontsize{14pt}{17pt}\selectfont Appendix: Evidence Hash and Basic Information}
+    Each piece of digital evidence has been hashed to ensure integrity and authenticity.
+    The hashes, alongside basic information such as file names, sizes, and timestamps, are provided in Appendix E.
+
+\end{document}
