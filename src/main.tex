@@ -10,7 +10,11 @@
 \usepackage{longtable}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{float}
 \usepackage{amsmath}
+\usepackage{tabularray}
+\usepackage{pdflscape}
+\usepackage{xcolor}
 \usepackage{times} % This package sets Times New Roman as the default text font
 \usepackage{helvet} % This package is for Helvetica, a sans-serif font
 \usepackage{courier} % This package is for Courier, a monospaced font
@@ -58,47 +62,73 @@
 
     \maketitle
 
-    \section*{\fontsize{14pt}{17pt}\selectfont Overview / Case Summary}
+    \section{\fontsize{14pt}{17pt}\selectfont Overview / Case Summary}\label{sec:selectfont-overview-/-case-summary}
     On the 29th of October 2022, at approximately 3:00 p.m.,
     the Intrusion Detection System (IDS) of the Bank of Hong Kong flagged abnormal network activities aimed at the Bank's web server.
     This prompted an immediate and thorough examination,
     leading to the suspicion of a deliberate cyber-attack.
     As the appointed network security engineer, my task was to investigate these anomalies,
-    analyze network traffic, and manage the incident response.
+    analyze network traffic, and reconstruct the whole attack.
 
-    \section*{\fontsize{14pt}{17pt}\selectfont Objective/Tools Used/Evidence Map \& Table}
+    \section{\fontsize{14pt}{17pt}\selectfont Objective/Tools Used/Evidence Map \& Table}\label{sec:selectfont-objective/tools-used/evidence-map-&-table}
     The primary objective of this forensic investigation is to analyze the pcap file to identify suspicious activities
     and reconstruct the events that occurred during the attack.
-    Tools used for this analysis include Wireshark for packet inspection,
-    Nmap for network scanning, and various cryptographic tools for evidence validation.
-    The Evidence Map & Table, provided as an appendix, organizes the evidence collected during the investigation.
+    Tools used for this analysis include Wireshark for packet inspection.
+    The Evidence Map & Table, provided as follows, organizes the evidence collected during the investigation.
 
-    \section*{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}
-    \subsection*{Hosts List}
+    \begin{landscape}
+        \begin{table}
+            \centering
+            \label{tab:evidence-table-under-private-range}
+
+            \begin{tblr}{
+                colspec = {Q[l, 3cm] X[l] X[l] X[l] Q[l, 2cm] X[l, -1]},
+                row{1} = {2em,azure7,fg=white,font=\large},
+                hlines, vlines}
+                IP Address & Host Name & Function & Digital Evidence & Type & Priority \\
+                \lstinline{192.168.56.1} & -- & -- & Keep getting ICMP request from \lstinline{192.168.93.131} & -- &  \\
+                \lstinline{192.168.93.1} & -- & participating in Dropbox's LAN sync feature &  & -- & \\
+                \lstinline{192.168.93.2} & -- & Router/DNS/NBNS &  & -- & \\
+                \lstinline{192.168.93.131} & WIN-0GR9LTN6K0J.localdomain & (Workstation/Redirector) &  & Windows  & \\
+                \lstinline{192.168.93.254} & localdomain (domain name) & DHCP Server & -- & -- & \\
+                \lstinline{192.168.93.255} & -- & Broadcast & -- & -- & \\
+                \lstinline{192.168.240.11 - 192.168.240.25} &  &  &  &  & \\
+                \lstinline{192.168.240.253} & INTRALINK (Master Browser Server Name) & Local Master Browser within subnet \lstinline{192.168.240.0/24} &  & Windows Millenium Edition (Windows NT 4.9) & \\
+                \lstinline{192.168.240.255} &  &  &  &  & \\
+            \end{tblr}
+
+            \caption{Evidence Table (Private IP Addresses)}
+        \end{table}
+    \end{landscape}
+
+
+
+    \section{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}\label{sec:selectfont-investigation-on-attack}
+    \subsection{Hosts List}\label{subsec:hosts-list}
     The analysis of the pcap file revealed several hosts with a substantial amount of network traffic,
     constituting more than 1\% of the captured packets.
     The details of these hosts, including IP and MAC addresses, are tabulated in Appendix A.
 
-    \subsection*{Victim Information}
+    \subsection{Victim Information}\label{subsec:victim-information}
     The victim of the attack was identified as the Bank's web server.
     Detailed information regarding the server's IP address, MAC address, and other relevant details are included in Appendix B.
 
-    \subsection*{Attacker Information}
+    \subsection{Attacker Information}\label{subsec:attacker-information}
     Through careful inspection of the network traffic, the attacker's identity was deduced.
     The corresponding IP and MAC addresses, as well as the techniques used in the intrusion, are documented in Appendix C.
 
-    \subsection*{Description of Attacks}
+    \subsection{Description of Attacks}\label{subsec:description-of-attacks}
     The attack methodologies observed from the packet captures indicated a structured and multi-phased approach,
     including reconnaissance, exploitation, and data exfiltration attempts.
     Specific attack vectors and their signatures are outlined in Appendix D.
 
 
-    \section*{\fontsize{14pt}{17pt}\selectfont Investigative Reconstruction}
+    \section{\fontsize{14pt}{17pt}\selectfont Investigative Reconstruction}\label{sec:selectfont-investigative-reconstruction}
     Upon scrutinizing the sequence of network events, a timeline of the attack was reconstructed,
     revealing the methods and progression of the malicious activities.
     This reconstruction is crucial for understanding the attack's impact and for developing future mitigation strategies.
 
-    \section*{\fontsize{14pt}{17pt}\selectfont Appendix: Evidence Hash and Basic Information}
+    \section{\fontsize{14pt}{17pt}\selectfont Appendix: Evidence Hash and Basic Information}\label{sec:selectfont-appendix:-evidence-hash-and-basic-information}
     Each piece of digital evidence has been hashed to ensure integrity and authenticity.
     The hashes, alongside basic information such as file names, sizes, and timestamps, are provided in Appendix E.
 
