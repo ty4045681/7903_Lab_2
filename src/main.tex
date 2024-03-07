@@ -74,34 +74,42 @@
     The primary objective of this forensic investigation is to analyze the pcap file to identify suspicious activities
     and reconstruct the events that occurred during the attack.
     Tools used for this analysis include Wireshark for packet inspection.
-    The Evidence Map & Table, provided as follows, organizes the evidence collected during the investigation.
+    The Evidence Map \& Table, provided as follows, organizes the evidence collected during the investigation.
 
     \begin{landscape}
-        \begin{table}
-            \centering
-            \label{tab:evidence-table-under-private-range}
-
-            \begin{tblr}{
-                colspec = {Q[l, 3cm] X[l] X[l] X[l] Q[l, 2cm] X[l, -1]},
-                row{1} = {2em,azure7,fg=white,font=\large},
-                hlines, vlines}
-                IP Address & Host Name & Function & Digital Evidence & Type & Priority \\
-                \lstinline{192.168.56.1} & -- & -- & Keep getting ICMP request from \lstinline{192.168.93.131} & -- &  \\
-                \lstinline{192.168.93.1} & -- & participating in Dropbox's LAN sync feature &  & -- & \\
-                \lstinline{192.168.93.2} & -- & Router/DNS/NBNS &  & -- & \\
-                \lstinline{192.168.93.131} & WIN-0GR9LTN6K0J.localdomain & (Workstation/Redirector) &  & Windows  & \\
-                \lstinline{192.168.93.254} & localdomain (domain name) & DHCP Server & -- & -- & \\
-                \lstinline{192.168.93.255} & -- & Broadcast & -- & -- & \\
-                \lstinline{192.168.240.11 - 192.168.240.25} &  &  &  &  & \\
-                \lstinline{192.168.240.253} & INTRALINK (Master Browser Server Name) & Local Master Browser within subnet \lstinline{192.168.240.0/24} &  & Windows Millenium Edition (Windows NT 4.9) & \\
-                \lstinline{192.168.240.255} &  &  &  &  & \\
-            \end{tblr}
-
-            \caption{Evidence Table (Private IP Addresses)}
-        \end{table}
+        \begin{longtblr}[
+            caption = {Evidence Table (Private IP Addresses)},
+            label = {tab:evidence-table-under-private-range},
+        ]{
+            colspec = {Q[l, 3cm] X[l] X[l] X[l] Q[l, 2cm] X[l, -1]},
+            row{1} = {2em,azure7,fg=white,font=\large},
+            hlines, vlines,
+        }
+            IP Address & Host Name & Function & Digital Evidence & Type & Priority \\
+            \lstinline{192.168.56.1} or \lstinline{147.8.178.172} & ATHENA & Server Type: 0x00011007 (Workstation, Server, SQL, NT Workstation, Potential Browser) & Keep getting ICMP request from \lstinline{192.168.93.131} & Windows XP (5.1) &  \\
+            \lstinline{192.168.93.1} & -- & Participating in Dropbox's LAN sync feature & Search for media renderer and media server & -- & \\
+            \lstinline{192.168.93.2} & -- & Router/DNS/NBNS & -- & -- & \\
+            \lstinline{192.168.93.131} & WIN-0GR9LTN6K0J.localdomain & (Workstation/Redirector) & Keep sending ICMP request to \lstinline{192.168.56.1} & MSFT 5.0 (maybe .NET 5.0 compatible) & \\
+            \lstinline{192.168.93.254} & localdomain (domain name) & DHCP Server & -- & -- & \\
+            \lstinline{192.168.93.255} & -- & Broadcast & -- & -- & \\
+            \lstinline{192.168.240.11} & SHRN100CB310 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.12} & SHRN100LG103 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.13} & SHRN100HW305 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.14} & SHRN100HW307 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.15} & SHRN100HW308 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.16} & SHRN100HW310 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.17} & SHRN100HW311 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.19} & SHRN100HW335A & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.20} & SHRN100HW335 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.21} & SHRN100CPLG104 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.22} & SHRN100HW327 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.23} & SHRN100CB315 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.24} & SHRN100LG101 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.25} & SHRN100LG102 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
+            \lstinline{192.168.240.253} & INTRALINK (Master Browser Server Name) & iGuard Security System Master / Local Master Browser within subnet \lstinline{192.168.240.0/24} (Machine Group: CSISAD) Server Type: 0x00849a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Master Browser, DFS & -- & Windows Millenium Edition (Windows NT 4.9) & \\
+            \lstinline{192.168.240.255} & -- & Broadcast & -- & -- & \\
+        \end{longtblr}
     \end{landscape}
-
-
 
     \section{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}\label{sec:selectfont-investigation-on-attack}
     \subsection{Hosts List}\label{subsec:hosts-list}
