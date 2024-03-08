@@ -80,14 +80,16 @@
         \begin{longtblr}[
             caption = {Evidence Table (Private IP Addresses)},
             label = {tab:evidence-table-under-private-range},
+            remark{Note} = {-- means no specific information available},
         ]{
             colspec = {Q[l, 3cm] X[l] X[l] X[l] Q[l, 2cm] X[l, -1]},
             row{1} = {2em,azure7,fg=white,font=\large},
+            rowhead = 1,
             hlines, vlines,
         }
             IP Address & Host Name & Function & Digital Evidence & Type & Priority \\
-            \lstinline{192.168.56.1} or \lstinline{147.8.178.172} & ATHENA & Server Type: 0x00011007 (Workstation, Server, SQL, NT Workstation, Potential Browser) & Keep getting ICMP request from \lstinline{192.168.93.131} & Windows XP (5.1) &  \\
-            \lstinline{192.168.93.1} & -- & Participating in Dropbox's LAN sync feature & Search for media renderer and media server & -- & \\
+            \lstinline{192.168.56.1} or \lstinline{147.8.178.172} & ATHENA & Server Type: 0x00011007 (Workstation, Server, SQL, NT Workstation, Potential Browser) & Keep getting ICMP request from \lstinline{192.168.93.131} / Keep getting 0x19(FIN, PSH, ACK) TCP packets in port 49159 from \lstinline{147.8.179.15:80} & Windows XP (5.1) &  \\
+            \lstinline{192.168.93.1} & -- & Using Dropbox's LAN sync feature & Search for media renderer and media server & Dropbox LAN Sync Discovery Protocol & \\
             \lstinline{192.168.93.2} & -- & Router/DNS/NBNS & -- & -- & \\
             \lstinline{192.168.93.131} & WIN-0GR9LTN6K0J.localdomain & (Workstation/Redirector) & Keep sending ICMP request to \lstinline{192.168.56.1} & MSFT 5.0 (maybe .NET 5.0 compatible) & \\
             \lstinline{192.168.93.254} & localdomain (domain name) & DHCP Server & -- & -- & \\
@@ -106,10 +108,253 @@
             \lstinline{192.168.240.23} & SHRN100CB315 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
             \lstinline{192.168.240.24} & SHRN100LG101 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
             \lstinline{192.168.240.25} & SHRN100LG102 & iGuard Security System Slave & Send heartbeat or status update every 30 seconds to Master (through broadcast) & -- & \\
-            \lstinline{192.168.240.253} & INTRALINK (Master Browser Server Name) & iGuard Security System Master / Local Master Browser within subnet \lstinline{192.168.240.0/24} (Machine Group: CSISAD) Server Type: 0x00849a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Master Browser, DFS & -- & Windows Millenium Edition (Windows NT 4.9) & \\
-            \lstinline{192.168.240.255} & -- & Broadcast & -- & -- & \\
+            \lstinline{192.168.240.253} or \lstinline{147.8.176.11} & INTRALINK (Master Browser Server Name) & iGuard Security System Master / Local Master Browser within subnet \lstinline{192.168.240.0/24} (Machine Group: CSISAD) Server Type: 0x00849a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Master Browser, DFS & Messages using BROWSER protocol & Windows Millenium Edition (Windows NT 4.9) / iGuard Security System & \\
+            \lstinline{192.168.240.255} & -- & Broadcast address of \lstinline{192.168.240.0 /24} & -- & -- & \\
         \end{longtblr}
     \end{landscape}
+
+%    \begin{landscape}
+%        \begin{longtblr}[
+%            caption = {Evidence Table (Public IP Addresses)},
+%            label = {tab:evidence-table-under-public-range},
+%            remark{Note} = {-- means no specific information available},
+%        ]{
+%            colspec = {Q[l, 3cm] X[l] X[l] X[l] Q[l, 2cm] X[l, -1]},
+%            row{1} = {2em,azure7,fg=white,font=\large},
+%            rowhead = 1,
+%            hlines, vlines,
+%        }
+%            IP Address & Host Name & Function & Digital Evidence & Type & Priority \\
+%            \lstinline{87.230.55.33} & ds87-230-55-33.dedicated.psmanaged.com & Cloud Service Provider (https://www.plusserver.com/en/) & -- & -- & \\
+%            \lstinline{108.160.163.44} & dropbox.com & Cloud Storage & -- & -- & \\
+%            \lstinline{147.8.2.5} & ntp.hku.hk & A Network Time Protocol server hosted by The University of Hong Kong (HKU) & Referred by packet No. 627882 & -- & \\
+%            \lstinline{147.8.175.1} & -- & Probable router & Multiple ARP packets from different source requesting the MAC address of this IP Address & -- & \\
+%            \lstinline{147.8.175.5} & -- & Router equipped with Mobile IP functionality & ICMP Mobile IP Advertisement & -- & \\
+%            \lstinline{147.8.175.8} & -- & Communicate with PowerChute Network Shutdown & The NMC communicates with PCNS (PowerChute Network Shutdown) over UDP port 3052, A UDP packet is sent every 25 second to ensure communication between the NMC and PCNS Agent. Also, an Individual Client Notification packet (MACONFIG packet) is sent by the NMC every 100 seconds & APC UPS Network Management Card & \\
+%            \lstinline{147.8.175.9} & -- & Communicate with PowerChute Network Shutdown & The NMC communicates with PCNS (PowerChute Network Shutdown) over UDP port 3052, A UDP packet is sent every 25 second to ensure communication between the NMC and PCNS Agent. Also, an Individual Client Notification packet (MACONFIG packet) is sent by the NMC every 100 seconds & APC UPS Network Management Card & \\
+%            \lstinline{147.8.175.21} & -- & A NTP server & NTP packet No. 627882 & -- & \\
+%            \lstinline{147.8.175.25} & -- & Black and white laser multifunction printer & SSDP packets sent by this IP & RICOH Aficio MP 7500 & \\
+%            \lstinline{147.8.175.28} & -- & -- & NBNS name query MINI1 & -- & \\
+%            \lstinline{147.8.175.32} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.38} & CONFIDENCE & Web server running on a Windows XP operating system, with UPnP and HTTP Server API components (from UPnP) / Server Type: 0x00031003, Workstation, Server, NT Workstation, Potential Browser, Backup Browser / Using Dropbox's LAN sync feature & Port 2869 for UPnP / Host announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & Windows XP (Microsoft-Windows-NT/5.1, from UPnP) / Windows 7 or Windows Server 2008 R2 (from BROWSER protocol) & \\
+%            \lstinline{147.8.175.41} & c301b.local & Allows for printing over a network using the IPP / Supports Printer Description Language (PDL) for direct printing commands to the printer / Traditional LPD (Line Printer Daemon) service for network printing & Messages using mDNS from this IP & HP LaserJet 400 color M451dn printer & \\
+%            \lstinline{147.8.175.43} & -- & -- & Requesting the IP address of a device with a given NetBIOS name DUMMY & -- & \\
+%            \lstinline{147.8.175.49} & -- & -- & NBNS name query MINI1 & -- & \\
+%            \lstinline{147.8.175.52} & -- & -- & Searching for an Internet gateway device that supports UPnP / Searching for yychung-pc & -- & \\
+%            \lstinline{147.8.175.59} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.66} & WSCHAN-WIN7-32 & Server Type: 0x00001003, Workstation, Server, NT Workstation & Host announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / Hardware and software for access control, video surveillance, time recording, and production data collection (from MAC address) & \\
+%            \lstinline{147.8.175.69} & sage.local & Offering an SSH file transfer service on port 22 & Messages using mDNS & -- & \\
+%            \lstinline{147.8.175.70} & PASSION & Server Type: 0x00009102, Server, Member, NT Workstation, NT Server & Host announcement using BROWSER & Windows 2000 & \\
+%            \lstinline{147.8.175.72} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.74} & HWCHAN-PC & Server Type: 0x00051003, Workstation, Server, NT Workstation, Potential Browser, Master Browser & Local Master announcement using BROWSER & Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.175.78} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.80} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.81} & MyLinkStation.local & Server Type: 0x00019a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Potential Browser / Supporting Apple Filing Protocol over TCP (\_afpovertcp) / Supporting TwonkyMedia UPnP SDK & Host announcement using BROWSER / SSDP NOTIFY messages & Network-Attached Storage (NAS) device from Buffalo Technology (Operating System: Linux)& \\
+%            \lstinline{147.8.175.91} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.105} & -- & Asking for the domain name pointers (PTR) of the services & Messages using mDNS & -- & \\
+%            \lstinline{147.8.175.109} & -- & Searching for BRUNOPC & NBNS name query message & -- & \\
+%            \lstinline{147.8.175.111} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & -- & \\
+%            \lstinline{147.8.175.122} & -- & Using Dropbox's LAN sync feature / Searching for printers and other devices using mDNS & Messages using Dropbox LAN Sync Discovery Protocol and mDNS & Apple device & \\
+%            \lstinline{147.8.175.128} & -- & Using Dropbox's LAN sync feature / Sending printer commands to Canon printers & Messages using Dropbox LAN Sync Discovery Protocol and Canon BJNP & Apple device & \\
+%            \lstinline{147.8.175.165} & -- & -- & NBNS name query MINI1 & Dell device & \\
+%            \lstinline{147.8.175.168} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.175.181} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.175.193} & -- & Using Dropbox's LAN sync feature / Trying to contact a remote license server through a UDP broadcast to port 1947 / Querying about HP02F966 (Workstation/Redirector) & Messages using Dropbox LAN Sync Discovery Protocol / UDP packets / NBNS packets & Dell device & \\
+%            \lstinline{147.8.175.197} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.175.198} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.175.208} & -- & Using Dropbox's LAN sync feature / Searching for many names through NBNS & Messages using Dropbox LAN Sync Discovery Protocol and NBNS & Apple device & \\
+%            \lstinline{147.8.175.209} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.175.215} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.175.216} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from FUJITSU LIMITED & \\
+%            \lstinline{147.8.175.221} & -- & Using Dropbox's LAN sync feature / Sending printer commands to Canon printers & Messages using Dropbox LAN Sync Discovery Protocol and BJNP & Apple device & \\
+%            \lstinline{147.8.175.222} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.175.225} & -- & Using Dropbox's LAN sync feature / Sending SSDP discovery request for a device that is the root of a device tree / Sending messages to probable HP printers & Messages using Dropbox LAN Sync Discovery Protocol and SSDP / UDP broadcast to port 3702 & MSI device & \\
+%            \lstinline{147.8.175.230} & -- & -- & NBNS name query MINI1 & Dell device & \\
+%            \lstinline{147.8.175.238} & -- & Querying about HP LaserJet / color LaserJet printers & Messages using mDNS protocol & Apple device & \\
+%            \lstinline{147.8.175.246} & -- & Searching for media server / media renderer & Messages using SSDP & Device from PCS Systemtechnik & \\
+%            \lstinline{147.8.175.252} & -- & Using Dropbox's LAN sync feature / Searching for Internet Gateway Device & Messages using Dropbox LAN Sync Discovery Protocol and SSDP & HP device & \\
+%            \lstinline{147.8.175.255} & -- & Broadcast & -- & -- & \\
+%            \lstinline{147.8.176.1} & -- & Router from Cisco Systems, Inc & Referred by DHCP packets & Cisco router & \\
+%            \lstinline{147.8.176.11} or \lstinline{192.168.240.253} & INTRALINK & Server Type: 0x00819a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Potential Browser, DFS & Messages using BROWSER protocol & Windows Millenium Edition (Windows NT 4.9) / iGuard Security System & \\
+%            \lstinline{147.8.176.12} & -- & -- & Referred by ARP broadcast (reply to \lstinline{147.8.176.15}) from source MAC address \lstinline{00:14:4f:02:06:42}, this IP and \lstinline{147.8.178.15} belong to the same device & Oracle device & \\
+%            \lstinline{147.8.176.15} & -- & DNS server & DNS queries and responses & A DNS server from Newisys,Inc. & \\
+%            \lstinline{147.8.176.22} & c316a2.local & Supporting the LPD protocol (port 515) for printing / raw printing via the PDL data stream (port 9100) / IPP (port 631) & Messages using mDNS & HP LaserJet P3010 Series printer & \\
+%            \lstinline{147.8.176.23} & c316b.local & Supporting the LPD protocol (port 515) for printing / raw printing via the PDL data stream (port 9100) / Sending additional details & Messages using mDNS & HP Color LaserJet 4650 printer & \\
+%            \lstinline{147.8.176.26} & c405c.local & Supporting raw printing via the PDL data stream (port 9100) & Messages using mDNS & HP Color LaserJet CP3505 printer & \\
+%            \lstinline{147.8.176.27} & c405b.local & Supporting raw printing via the PDL data stream (port 9100) & Messages using mDNS & HP LaserJet P3005 printer & \\
+%            \lstinline{147.8.176.28} & c405a.local & Printer & Messages using mDNS & HP LaserJet 8150 Series & \\
+%            \lstinline{147.8.176.40} & -- & Announcement about domain CB315 and Master Browser Server Name (DVR315) & Message using BROWSER protocol & Device from QUANTUM DESIGNS (H.K.) LTD. & \\
+%            \lstinline{147.8.176.44} & SMART315 & Server Type: 0x00001003, Workstation, Server, NT Workstation & Message using BROWSER protocol & Windows XP / iGuard API Server & \\
+%            \lstinline{147.8.176.46} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.176.12}) & -- & \\
+%            \lstinline{147.8.176.55} & -- & Router & UPnP Device Description transmitted in TCP stream 3 & Wireless Router TL-WR740 & \\
+%            \lstinline{147.8.176.56} & PROMISE & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Messages using BROWSER protocol & Dell device & \\
+%            \lstinline{147.8.176.75} & Photo-NAS.local & NAS device & Message using mDNS & NAS from Synology Incorporated & \\
+%            \lstinline{147.8.176.77} & -- & Searching for multiple names (e.g., HKUCS, CB411-COMPVISIO) & Messages using SSDP & Device from PCS Systemtechnik & \\
+%            \lstinline{147.8.176.80} & CSEX & Server Type: 0x0084102b, Workstation, Server, Domain Controller, Time Source, NT Workstation, Master Browser, DFS & Local Master Announcement using BROWSER & Windows Server 2003 R2 or Windows Server 2003 / Dell device & \\
+%            \lstinline{147.8.176.112} & TESTINGICDFI-PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / Dell device & \\
+%            \lstinline{147.8.176.114} & -- & Searching for KWCCHAN-PC (Domain Controller) & Message using NBNS & -- & \\
+%            \lstinline{147.8.176.118} & -- & Running SSH on port 22 & SSH connection from \lstinline{147.8.178.254} & -- & \\
+%            \lstinline{147.8.176.145} & -- & -- & Requesting for \lstinline{147.8.176.146} using ARP request & -- & \\
+%            \lstinline{147.8.176.146} & -- & -- & Wanted by \lstinline{147.8.176.145} through ARP request & -- & \\
+%            \lstinline{147.8.176.196} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15} & -- & \\
+%            \lstinline{147.8.176.197} & KMBT69E8F2 & Server Type: 0x00000303, Workstation, Server, Member, Print & Host Announcement using BROWSER & Printer from KONICA MINOLTA HOLDINGS, INC. & \\
+%            \lstinline{147.8.176.199} & -- & Searching for a Internet Gateway Device & Messages using SSDP & MSI device & \\
+%            \lstinline{147.8.176.221} & lg102-pschan & Using Dropbox's LAN sync feature / Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Messages using Dropbox LAN Sync Discovery Protocol / Host Announcement using BROWSER & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.19} & CSISNAS2 & Server Type: 0x00869007, Workstation, Server, SQL, NT Workstation, NT Server, Backup Browser, Master Browser, DFS & Local Master Announcement using BROWSER & Windows Server 2003 R2 or Windows Server 2003 / Device from BUFFALO.INC & \\
+%            \lstinline{147.8.177.21} & TESTWINS2012 & Server Type: 0x00009007, Workstation, Server, SQL, NT Workstation, NT Server & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / Device from PCS Systemtechnik & \\
+%            \lstinline{147.8.177.22} & -- & Querying about CSISNAS2(Server Service) & Message using NBNS & Device from PCS Systemtechnik & \\
+%            \lstinline{147.8.177.24} & TFWONGATCECID & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Searching for Internet Gateway Device & Host Announcement using BROWSER / SSDP search messages & Windows 7 / Dell device & \\
+%            \lstinline{147.8.177.25} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15} & -- & \\
+%            \lstinline{147.8.177.28} & NPI39E91F.local & Printer & Messages using mDNS & HP LaserJet 2300 series & \\
+%            \lstinline{147.8.177.29} & YXFANGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.37} & CPMENGPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.42} & -- & Searching for media server / media renderer & Messages using SSDP & HP device & \\
+%            \lstinline{147.8.177.51} & -- & Notifying the network that this is a media server / content directory / connection manager & SSDP Notify messages & Windows 8.1 / Dell device & \\
+%            \lstinline{147.8.177.54} & ARLIN & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.55} & YDZHENG2PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.56} & CB411-COMPVISION & Server Type: 0x00849a03, Workstation, Server, Print, Xenix, NT Workstation, NT Server, Master Browser, DFS & Local Master Announcement using BROWSER protocol & IBM device & \\
+%            \lstinline{147.8.177.59} & -- & Searching for Internet Gateway Device / Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol and SSDP & HP device & \\
+%            \lstinline{147.8.177.63} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Acer device & \\
+%            \lstinline{147.8.177.70} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.73} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15} & -- & \\
+%            \lstinline{147.8.177.85} & XLZHUPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.87} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.177.94} & JYANG2PC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.96} & LYMOPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.97} & YLCAIPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.100} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.177.105} & IMINKINPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.115} & MYANGPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.116} & CHDHUNGPC & Server Type: 0x00031003, Workstation, Server, NT Workstation, Potential Browser, Backup Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.127} & CZZHANGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.148} & YTYEPC & Server Type: 0x00011203, Workstation, Server, Print, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.149} & HWANG & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd.  / Windows XP & \\
+%            \lstinline{147.8.177.156} & JMSHIPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Searching for name PGPC2984 (Workstation/Redirector) and Internet Gateway Device & Host Announcement using BROWSER / NBNS and SSDP messages & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.158} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.177.161} & SFJIANGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.165} & -- & Looking for services related to Apple's mobile device management or related functionalities & Messages using mDNS query & -- & \\
+%            \lstinline{147.8.177.170} & XJZHUPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.172} & QHSUNPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.174} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.178} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.180} & XXFANPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.182} & -- & -- & -- & Dell device & \\
+%            \lstinline{147.8.177.186} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.188} & HLI2PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.196} & JPDUANPC & Server Type: 0x00001003, Workstation, Server, NT Workstation & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.202} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.177.205} & YWANGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.213} & -- & Media renderer & SSDP messages & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.177.214} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.177.216} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.177.221} & YBTANGPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Looking for multiple names (e.g., zkyrqzwmss) & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.223} & YKLAM2PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.177.227} & WTTUPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.228} & CMLEUNG2PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / MSI device & \\
+%            \lstinline{147.8.177.229} & SLHOPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Searching for media server / media renderer & Host Announcement using BROWSER / SSDP search messages & Windows 7 or Windows Server 2008 R2 / Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.177.230} & XHJIAPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.232} & -- & Looking for services related to Apple's mobile device management or related functionalities / Using Dropbox's LAN sync feature & Messages using mDNS query and Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.233} & JZQINPC & Server Type: 0x00001003, Workstation, Server, NT Workstation / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & Dell device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.241} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.242} & HWUPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.243} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.177.245} & YWZHANG2PC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.177.252} & SHCHANPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.177.253} & RBLIPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature / Using Platinum UPnP SDK (Platinum/1.0.4.11) / SHPlayer UPnP Media Server & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol / UPnP Device Description transmitted in TCP stream 35 & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.178.15} & -- & -- & -- & Oracle device & \\
+%            \lstinline{147.8.178.23} & lg102a.local & Printer & Messages using mDNS & HP LaserJet 2420 & \\
+%            \lstinline{147.8.178.24} & WINBACKUP & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows XP / Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.178.27} & -- & Querying about CB411-COMPVISIO and HKUCS & NBNS messages & Device from PCS Systemtechnik & \\
+%            \lstinline{147.8.178.32} & hw501a.local  & Printer & Messages using mDNS & HP LaserJet P3005 & \\
+%            \lstinline{147.8.178.33} & NPI87FCC4.local & -- & mDNS query from \lstinline{147.8.177.182} & -- & \\
+%            \lstinline{147.8.178.34} & lg101a.local & Printer & Messages using mDNS & HP LaserJet 2300L & \\
+%            \lstinline{147.8.178.35} & NPI23A4A4.local & Printer & Messages using mDNS & HP LaserJet P3005 & \\
+%            \lstinline{147.8.178.39} & hw324a.local & Printer & Messages using mDNS & HP LaserJet 4100 Series & \\
+%            \lstinline{147.8.178.107} & -- & Suspicious SYN flood attack to \lstinline{147.8.178.220} / Service misconfiguration & High volume of SYN requests & Dell device & \\
+%            \lstinline{147.8.178.112} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.178.125} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.178.127} & -- & Trying to contact a remote license server through a UDP broadcast to port 1947 & UDP broadcast to port 1947 & MSI device & \\
+%            \lstinline{147.8.178.133} & -- & -- & -- & VMware & \\
+%            \lstinline{147.8.178.142} or \lstinline{147.8.178.206} & CISC-CRAWLER02 & Server service & NBNS packets & Dell device & \\
+%            \lstinline{147.8.178.152} & WALLACE-PC & Server Type: 0x00011203, Workstation, Server, Print, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature / Communicating with Memcached caching system & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol / UDP broadcast to port 1211 & Dell device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.178.153} & -- & Using Dropbox's LAN sync feature / Searching for Internet Gateway Device & Messages using Dropbox LAN Sync Discovery Protocol / SSDP search message & Dell device & \\
+%            \lstinline{147.8.178.165} & -- & Trying to contact a remote license server through a UDP broadcast to port 1947 / Searching for name wpad & UDP broadcast to port 1947 / LLMNR packets & Device from Wistron InfoComm(Kunshan)Co.,Ltd. & \\
+%            \lstinline{147.8.178.172} & ATHENA & Server Type: 0x00011007 (Workstation, Server, SQL, NT Workstation, Potential Browser) & Keep getting ICMP request from \lstinline{192.168.93.131} / Keep getting 0x19(FIN, PSH, ACK) TCP packets in port 49159 from \lstinline{147.8.179.15:80} & Windows XP (5.1) & \\
+%            \lstinline{147.8.178.177} & -- & -- & -- & HP device & \\
+%            \lstinline{147.8.178.179} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.178.206} or \lstinline{147.8.178.142} & CISC-CRAWLER02 & Server service & NBNS packets & Dell device & \\
+%            \lstinline{147.8.178.209} & -- & Announcing the establishment of services to the multicast group & SSDP packets & NAS & \\
+%            \lstinline{147.8.178.216} & -- & Trying to contact a remote license server through a UDP broadcast to port 1947 & UDP broadcast to port 1947 & Dell device & \\
+%            \lstinline{147.8.178.218} & -- & Extremely high volume of same-size UDP packets every 0.0005s from 12.401672s to 181.054703 (duration 168.653031s) (UDP flood) & UDP packets to \lstinline{147.8.178.220:8888} & Dell device & \\
+%            \lstinline{147.8.178.219} & -- & Trying to contact a remote license server through a UDP broadcast to port 1947 & UDP broadcast to port 1947 & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.178.220} & -- & Experiencing TCP SYN flood from \lstinline{147.8.178.107} and UDP flood from \lstinline{147.8.178.218} & TCP SYN packets and UDP packets & Dell device & \\
+%            \lstinline{147.8.178.222} & USER-HP & Server Type: 0x00011203, Workstation, Server, Print, NT Workstation, Potential Browser / Using Gnutella & Host Announcement using BROWSER / UDP packets to port 6346 & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.178.223} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.178.225} & CBCHANPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Trying to contact a remote license server through a UDP broadcast to port 1947 & Host Announcement using BROWSER / UDP broadcast to port 1947 & Windows XP / Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.178.227} & CISC-CRAWLER01 & Server Type: 0x00001003, Workstation, Server, NT Workstation & Host Announcement using BROWSER & Windows XP / Dell device & \\
+%            \lstinline{147.8.178.228} & -- & Searching for media server / media renderer & Messages using SSDP & Dell device & \\
+%            \lstinline{147.8.178.229} & -- & Searching for media server / media renderer & Messages using SSDP & Dell device & \\
+%            \lstinline{147.8.178.235} & -- & Announcing the establishment of services to the multicast group & SSDP packets & NAS & \\
+%            \lstinline{147.8.178.236} & bio-nas2.local & NAS device & Message using mDNS & NAS from Synology Incorporated & \\
+%            \lstinline{147.8.178.239} & -- & Router & ICMP router advertisement packets & Dell device & \\
+%            \lstinline{147.8.178.241} & -- & -- & -- & Dell device & \\
+%            \lstinline{147.8.178.248} & DiskStation.local & Supporting Apple Filing Protocol over TCP (_afpovertcp) & mDNS packets & NAS from Synology Incorporated & \\
+%            \lstinline{147.8.178.253} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & MSI device & \\
+%            \lstinline{147.8.178.254} & -- & Running application using SSH & SSH connection to \lstinline{147.8.176.118} & HP device & \\
+%            \lstinline{147.8.179.42} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & MSI device & \\
+%            \lstinline{147.8.179.46} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.179.48} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.179.53} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & MSI device & \\
+%            \lstinline{147.8.179.56} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.74} & -- & -- & -- & Dell device & \\
+%            \lstinline{147.8.179.81} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from Universal Global Scientific Industrial Co., Ltd. & \\
+%            \lstinline{147.8.179.82} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.84} & -- & Using Dropbox's LAN sync feature / Sending SSDP discovery request for a device that is the root of a device tree / Sending messages to probable HP printers & Messages using Dropbox LAN Sync Discovery Protocol and SSDP / UDP broadcast to port 3702 & Dell device & \\
+%            \lstinline{147.8.179.105} & -- & -- & SSDP notify messages & Linux / Network camera (or gateway) from fitivision technology Inc. & \\
+%            \lstinline{147.8.179.106} & -- & -- & SSDP notify messages & Linux / Network camera (or gateway) from fitivision technology Inc. & \\
+%            \lstinline{147.8.179.131} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.140} & -- & Using Dropbox's LAN sync feature / Sending SSDP discovery request for a device that is the root of a device tree / Sending messages to probable HP printers & Messages using Dropbox LAN Sync Discovery Protocol and SSDP / UDP broadcast to port 3702 & Dell device & \\
+%            \lstinline{147.8.179.141} & -- & Media server & SSDP messages & MSI device & \\
+%            \lstinline{147.8.179.144} & -- & Announcement about domain WORKGROUP and Master Browser Server Name (PEREA) / Sending messages to probable HP printers & Message using BROWSER protocol / UDP broadcast to port 3702 & MSI device & \\
+%            \lstinline{147.8.179.150} & ZYLUPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.179.151} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & MSI device & \\
+%            \lstinline{147.8.179.153} & CZHANG2PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.156} & XMCUIPC & Server Type: 0x00011203, Workstation, Server, Print, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.157} & CYYEUNGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Sending messages to probable HP printers & Host Announcement using BROWSER / UDP broadcast to port 3702 & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.158} & FLIANGPC & Server Type: 0x00011203, Workstation, Server, Print, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.179.159} & -- & Supporting UPnP through QQ Music & SSDP messages & HP device & \\
+%            \lstinline{147.8.179.162} & -- & -- & Referred by ARP broadcast (requested by \lstinline{147.8.178.15}) & -- & \\
+%            \lstinline{147.8.179.163} & LZHANG3PC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.165} & JXWANGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.179.167} & PGPC159F & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.198} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.205} & -- & Using Dropbox's LAN sync feature / Running multiple services (e.g., media server, connection manager) & Messages using Dropbox LAN Sync Discovery Protocol and SSDP& Device from LCFC(HeFei) Electronics Technology co., ltd / Windows 8.1 & \\
+%            \lstinline{147.8.179.210} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Device from RADSTONE TECHNOLOGY & \\
+%            \lstinline{147.8.179.217} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.224} & WZHANG2PC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.225} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & Dell device & \\
+%            \lstinline{147.8.179.227} & -- & Using Dropbox's LAN sync feature / Looking for ONWITH.NET and xn--7ou354dv5jrrc & Messages using Dropbox LAN Sync Discovery Protocol, NBNS and LLMNR & HP device & \\
+%            \lstinline{147.8.179.228} & HPANPC & Server Type: 0x00001003, Workstation, Server, NT Workstation / Searching for Internet Gateway Device & Host Announcement using BROWSER / SSDP messages & Windows XP / Dell device & \\
+%            \lstinline{147.8.179.231} & -- & Multiple UDP packet from port 8889 to \lstinline{224.0.0.88:8000} every 10s, the TTL is larger than 1 (maybe misconfiguration) & UDP packets & Dell device & \\
+%            \lstinline{147.8.179.235} & YTYUEPC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.179.236} & -- & Using Dropbox's LAN sync feature & Messages using Dropbox LAN Sync Discovery Protocol & HP device & \\
+%            \lstinline{147.8.179.240} & YPLIPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Searching for Internet Gateway Device & Host Announcement using BROWSER / SSDP messages & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.242} & GMJINGPC & Server Type: 0x00011003, Workstation, Server, NT Workstation, Potential Browser / Using Dropbox's LAN sync feature & Host Announcement using BROWSER / Messages using Dropbox LAN Sync Discovery Protocol & HP device / Windows 7 or Windows Server 2008 R2 & \\
+%            \lstinline{147.8.179.244} & -- & Sending messages to probable HP printers & UDP broadcast packets to port 3702 & HP device & \\
+%            \lstinline{147.8.179.245} & GBLI-PC & Server Type: 0x00011007, Workstation, Server, SQL, NT Workstation, Potential Browser & Host Announcement using BROWSER & Windows 7 or Windows Server 2008 R2 / HP device & \\
+%            \lstinline{147.8.179.254} & NPIA4138B.local & Printer & mDNS messages & HP LaserJet P3005 & \\
+%            \lstinline{147.8.179.255} & -- & Broadcast address of \lstinline{147.8.176.0 /22} & -- & -- & \\
+%            \lstinline{147.8.255.255} & -- & Broadcast address of \lstinline{147.8.0.0 /16} & -- & -- & \\
+%            \lstinline{224.0.0.1} & -- & Used by BJNP (Canon printer command) & -- & -- & \\
+%            \lstinline{224.0.0.88} & -- & Reserved for multicast addresses & -- & -- & \\
+%            \lstinline{224.0.0.251} & -- & Used by mDNS & -- & -- & \\
+%            \lstinline{224.0.0.252} & -- & Used by Link-Local Multicast Name Resolution (LLMNR) & -- & -- & \\
+%            \lstinline{224.0.1.60} & -- & Used by Service Location Protocol (SRVLOC) & -- & -- & \\
+%            \lstinline{239.235.0.8} & -- & Multicast & -- & -- & \\
+%            \lstinline{239.255.255.250} & -- & Used by Simple Service Discovery Protocol (SSDP) & -- & -- & \\
+%            \lstinline{255.255.255.255} & -- & Broadcast & -- & -- & \\
+%        \end{longtblr}
+%    \end{landscape}
 
     \section{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}\label{sec:selectfont-investigation-on-attack}
     \subsection{Hosts List}\label{subsec:hosts-list}
