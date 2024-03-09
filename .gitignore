@@ -1,4 +1,6 @@
 .fastRequest
 out/*
+src/*
+!src/*.tex
 !out/*.pdf
 .DS_Store
