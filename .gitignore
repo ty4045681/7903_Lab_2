@@ -1,3 +1,4 @@
 .fastRequest
-out
+out/*
+!out/*.pdf
 .DS_Store
