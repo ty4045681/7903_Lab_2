@@ -4,3 +4,5 @@ src/*
 !src/*.tex
 !out/*.pdf
 .DS_Store
+.idea
+*.iml
