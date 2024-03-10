@@ -75,7 +75,7 @@
     The primary objective of this forensic investigation is to analyze the pcap file to identify suspicious activities
     and reconstruct the events that occurred during the attack.
     Wireshark is used for packet inspection.
-    The Evidence Table, provided in Appendix A, organizes the evidence collected during the investigation.
+    The Evidence Map and Table, provided in Appendix A, organizes the evidence collected during the investigation.
     The evidence hash and base information are provided in Appendix B.
 
     \section{\fontsize{14pt}{17pt}\selectfont Investigation on Attack}\label{sec:selectfont-investigation-on-attack}
@@ -101,7 +101,7 @@
             label = {tab:hosts-with-significant-network-traffic},
             remark{Note} = {-- means no specific information available},
         ]{
-            colspec = {X[l] X[l] X[l] X[l] X[l] X[l] X[l]},
+            colspec = {X[l] X[l] X[l, -1] X[l, -1] X[l, -1] X[l, -1] X[l, -1]},
             row{1} = {2em,azure7,fg=white,font=\large},
             rowhead = 1,
             hlines, vlines,
@@ -132,7 +132,7 @@
     \end{figure}
 
     Analysis of the pcap file revealed that the attacker \lstinline|147.8.178.218| dispatched 330,192 UDP packets of uniform size to port 8888 on the victim's system \lstinline|147.8.178.220|. 
-    Each packet contributed to a cumulative data volume of 20MB. 
+    Each packet contributed to a cumulative data volume of 20MB.
     The assault commenced at 12.401672 seconds (Oct 29, 2022 15:16:46.938460000 HKT), enduring for 168.6530 seconds, with UDP packets being sent at intervals ranging from 0.0005 to 0.001 seconds.
 
     This is a typical UDP flood attack, which is so intense that it comprises 44.1\% of the total network traffic.
@@ -160,7 +160,8 @@
         \label{fig:icmp-flood-io-graph-reply}
     \end{figure}
 
-    Combine the I/O graph of request and reply packets, the graph is shown in Figure 4.
+    Combine the I/O graphs of request and reply packets to observe to which extent the two graphs above are overlapping,
+    the graph is shown in Figure 4.
 
     \begin{figure}[H]
         \centering
@@ -171,7 +172,7 @@
 
     The pcap file revealed that the attacker \lstinline|192.168.93.131| sent 408,614 ICMP packets to the victim's system \lstinline|192.168.56.1|.
     The ICMP flood attack commenced at 6.589908 seconds (Oct 29, 2022 15:16:41.126696000 HKT), lasting for 195.7510 seconds, with a total of 17MB data transmitted over the network. 
-    The rate of ICMP request and reply packets fluctuated between 1,000 to 4,000 per second, peaking at nearly 6,000 packets per second. 
+    The rate of ICMP request and reply packets fluctuated between 1,000 to 4,000 per second, peaking at nearly 6,000 packets per second.
     Interestingly, the frequency of reply packets per second did not significantly increase as the attack progressed. 
     A comparison of the input/output graph for the number of request packets per second over time with that of the reply packets per second reveals a substantial overlap, indicating no notable impact on the victim.
     Further analysis of the evidence table reveals that the IP address 192.168.93.2 serves as the router for the subnet 192.168.93.0/24. 
@@ -212,7 +213,7 @@
     However, this attack was not intense enough to cause a significant impact on the target system.
     As based on the information obtained from the packet captures, the target system \lstinline|147.8.178.220| still responded to other network traffic during the attack.
     The pattern of the attack resembles a normal network traffic pattern. 
-    There's a chance that the target system was running a service that was listening on the targeted ports previously.
+    There's a chance that the target system was running a service that was listening to the targeted ports previously.
     Out of some reason, these ports were no longer in use, and the attacker's system was still trying to connect to these ports.
 
     In a nutshell, the suspicious SYN flood attack was not successful in causing a significant impact on the target system.
@@ -305,13 +306,23 @@
     At Oct 29, 2022 15:16:46.938460000 HKT, the UDP flood attack was initiated by the attacker \lstinline|147.8.178.218|,
     targeting the victim \lstinline|147.8.178.220|. This attack lasted for 168.6530 seconds.
 
-    There're also other suspicious activities, such as SYN flood, TCP FIN PSH ACK flood, and SSDP misconfiguration.
+    There're also other suspicious activities, such as SYN flood, TCP FIN PSH ACK flood, and
+    excessive NOTIFY messages ascribed to SSDP misconfiguration.
     However, these activities were not as severe as the aforementioned flood attacks.
 
     Except for the devices involved in the attacks, other devices in the network were not affected by the attacks and operated normally.
 
 
     \section*{\fontsize{14pt}{17pt}\selectfont Appendix A}\label{sec:selectfont-appendix-a}
+
+    \begin{landscape}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{image/Diagram}
+            \caption{Evidence Map (Network Topology)}
+            \label{fig:evidence-map-network-topology}
+        \end{figure}
+    \end{landscape}
 
     \begin{landscape}
         \begin{longtblr}[
